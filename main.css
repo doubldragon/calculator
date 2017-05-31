@@ -1,0 +1,33 @@
+.btn {
+	height: 75px;
+	width: 23%;
+	border-top: : 2px;
+	background-color: grey;
+	margin: 1px;
+	/*float: left;*/
+
+	/*display: inline-block;*/
+	/*white-space: nowrap;*/
+}
+
+.row {
+	width: 75%;
+	clear: right;
+	margin-left: 10px;
+	display: inline-block;
+}
+#screen {
+	margin-top: 20px;
+	margin-bottom: 1px;
+	height: 75px;
+	width: 66%;
+	background-color: blue;
+	margin-left: 27px;
+
+}
+
+#calc_body {
+	width: 375px;
+	background-color: red;
+	padding: 0;
+}
