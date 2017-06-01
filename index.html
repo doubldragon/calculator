@@ -1,6 +1,6 @@
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width", initial-scale=1.0" charset="UTF-8">
 	<title>Calculator 2000</title>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.js" integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -12,45 +12,47 @@
 </head>
 <body>
 	<!-- <div class = 'container-fluid'> -->
-		<div class =  'container' id='calc_body'>
+		<div class =  'container' id='calc'>
 			
 			<div class = 'row' id='screen'>
-				<div class = 'col-md-3'>
-				<input type="form-control" placeholder="Ready for Mathing">
-				</div>
+				<form name="calc">
+        			<input type="text" class="screen text-right col-md-12" id="display" value = 0 readonly>
+      			</form>
+				<!-- <input type="text" class="screen text-right col-md-12" name="result" readonly> -->
+				
 			</div>
 			
 			<div class='row'>
 			
-				<button id='clear' class="btn col-md-3">Clear</button>
-				<button class="btn col-md-3"></button>
-				<button class="btn col-md-3"></button>
-				<button id="divide" class="btn col-md-3">/</button>
+				<button id='clear' class="key func col-md-3" >Clear</button>
+				<button class="key func col-md-3">CE</button>
+				<button class="key numeric col-md-3"> +/-</button>
+				<button id="/" class="key func col-md-3" >/</button>
 			
 			</div>
 			<div class='row'>
-				<button id='seven' class="btn col-md-3">7</button>
-				<button id='eight' class="btn col-md-3">8</button>
-				<button id='nine' class="btn col-md-3">9</button>
-				<button id="multiply" class="btn col-md-3">X</button>
+				<button id='7' class="key numeric col-md-3" >7</button>
+				<button id='8' class="key numeric col-md-3" >8</button>
+				<button id='9' class="key numeric col-md-3" >9</button>
+				<button id="*" class="key func col-md-3">X</button>
 			</div>
 			<div class='row'>
-				<button id='four' class="btn col-md-3">4</button>
-				<button id='five' class="btn col-md-3">5 </button>
-				<button id='six' class="btn col-md-3">6</button>
-				<button id="subtract" class="btn col-md-3">-</button>
+				<button id='4' class="key numeric col-md-3" >4</button>
+				<button id='5' class="key numeric col-md-3" >5</button>
+				<button id='6' class="key numeric col-md-3" >6</button>
+				<button id="-" class="key func col-md-3">-</button>
 			</div>
 			<div class='row'>
-				<button id='one' class="btn col-md-3">1</button>
-				<button id='two' class="btn col-md-3">2</button>
-				<button id='three' class="btn col-md-3">3</button>
-				<button id="add" class="btn col-md-3">+</button>
+				<button id='1' class="key numeric col-md-3" >1</button>
+				<button id='2' class="key numeric col-md-3" >2</button>
+				<button id='3' class="key numeric col-md-3" >3</button>
+				<button id="+" class="key func col-md-3">+</button>
 			</div>
 			<div class='row'>
-				<button id='zero' class="btn col-md-3">0</button>
-				<button class="btn col-md-3"></button>
-				<button id='decimal' class="btn col-md-3">.</button>
-				<button id="evaluate" class="btn col-md-3">=</button>
+				<button id='0' class="key numeric col-md-3" >0</button>
+				<div class="key numeric col-md-3"></div>
+				<button id='.' class="key numeric col-md-3">.</button>
+				<button id="calculate" class="key func col-md-3">=</button>
 			</div>
 
 
@@ -58,6 +60,6 @@
 
 		</div>
 	<!-- </div> -->
-	
+	<script src="main.js"></script>
 </body>
 </html>
