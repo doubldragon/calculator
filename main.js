@@ -5,17 +5,16 @@ var selectedFunc = null;
 var clickFunc;
 var display = document.getElementById('display');
 var total;
-var operator;
 
 document.onreadystatechange = function() {
     if (document.readyState == "interactive") {
         //initialize the application
         start();
+        clearScreen();
 
     }
 };
 
-// What should happen when the page is initially loaded
 function start() {
     //create eventhandlers for each button
     var buttons = document.getElementsByClassName("key");
@@ -23,102 +22,97 @@ function start() {
         buttons[i].addEventListener("click", buttonLogic);
     }
 }
-//determine what to 
+
 function buttonLogic(evt) { //sorts out the button presses
     var btnValue = evt.target.innerHTML
 
-    if ((0 <= btnValue && btnValue <= 9) || btnValue === '.') { //check if press is number or decimal
-        if (!clickFunc) { //concatenates number in display if a function as not been chosen
-            var temp = "" + value2 + btnValue;
-            value2 = parseInt(temp);
-        } else if (selectedFunc) { //once function is selected, it stores the number and prepares for the next number
-            value1 = value2;
-            value2 = btnValue;
-            clickFunc = false;
-        } else {
-            value2 = btnValue; 
-            clickFunc = false;
-        }
-
-        console.log(value2);
-        display.value = value2;
-        handleNum(value2);
+    if ((0 <= btnValue && btnValue <= 9) || btnValue === '.') { 
+    	if (!clickFunc) {
+    		handleNum(btnValue);
+    	 } else {
+    		value1 = value2;
+    		value2 = btnValue;
+    		clickFunc = false;
+    	}
+    	checkState(btnValue);
+    	display.value = value2;
     } else {
-        clickFunc = true;
-        handleFunc(btnValue);
+    	clickFunc = true;
+    	handleFunc(btnValue);
     }
-
 }
 
-//function to process numbers
-function handleNum(btnValue) {
+function handleFunc(btnValue){
 
+	switch (btnValue) {
+		
+		case "/":
+			selectedFunc = "/";
+			break;
+		case "X":
+			selectedFunc = "*";
+			break;
+		case "+":
+			selectedFunc = "+";
+			break;
+		case "-":
+			selectedFunc = "-";
+			break;
+		case "=":
+			evaluate();
+			break;
+		case "Clear":
+			clearScreen();
+			break;
+		case "+/-":
+			value2 = value2 * (-1);
+			display.value = value2;
+			break;
+		case "%":
+			value2 = value2 /100;
+			display.value = value2;
+			break;
+		case "CE":
+			value2 = value1;
+			value1 = 0;
+			display.value = 0;
+			break;
+
+	};
+	checkState(btnValue);
 }
-//function to process functions
-function handleFunc(btnValue) {
-    switch (btnValue) {
 
-        // case "=":
-        // 	selectedFunc = "=";
-        // 	evaluate();
-        // 	break;
-        case "/":
-            selectedFunc = "/";
-            break;
-        case "X":
-            selectedFunc = "*";
-            break;
-        case "+":
-            selectedFunc = "+";
-            break;
-        case "-":
-            selectedFunc = "-";
-            break;
-        // case "CE":
-        //     console.log('Cleared Entry!');
-        //     value2 = value1;
-        //     value1 = 0;
-        //     display.value = value1;
-        //     clickFunc = true;
-        //     break;
-            // default: 
-            // 	display.value = 0;
-            // 	value1 = 0;
-            // 	value2 = 0;
-            // 	console.log('Cleared');
-            // 	break;
-    };
-
-    console.log(value1 + ' ' + value2);
-
-    if (btnValue === "=") {
-        evaluate();
-        //clearScreen();
-    } else if (btnValue !== 'Clear' && btnValue !== 'CE') {
-        value1 = value2;
-        value2 = 0;
-    } else if (btnValue === 'Clear') {
-        clearScreen();
-    };
-    // display.value =0;
-    console.log(selectedFunc)
-
-
-
-}
-//function to update display
 function evaluate() {
-
-    total = "" + value1 + selectedFunc + value2;
+	
+    total = "" + parseInt(value1) + selectedFunc + parseInt(value2);
     total = eval(total);
+    value1 = value2;
+    value2 = 0;
     selectedFunc = null;
     console.log(total);
     display.value = total;
+
 }
 
 function clearScreen() {
     value1 = 0;
-    value2 = 0;
-    display.value = value1;
+    value2 = undefined;
+    display.value = 0;
+    selectedFunc = null;
     console.log('Screen Cleared!');
+}
+
+function checkState(btnValue) {
+	console.log('value 1: ' + value1 + ' value 2: ' + value2);
+	console.log(btnValue);
+	console.log(selectedFunc);
+}
+
+function handleNum(btnValue) {
+	if (value2 === undefined) {
+		value2 = "" + btnValue;
+	} else {
+		var temp = "" + value2 + btnValue;
+    	value2 = temp;
+    }
 }
