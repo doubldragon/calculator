@@ -24,19 +24,19 @@ function start() {
     }
 }
 //determine what to 
-function buttonLogic(evt) {
+function buttonLogic(evt) { //sorts out the button presses
     var btnValue = evt.target.innerHTML
 
-    if ((0 <= btnValue && btnValue <= 9) || btnValue === '.') {
-        if (!clickFunc && !selectedFunc) {
+    if ((0 <= btnValue && btnValue <= 9) || btnValue === '.') { //check if press is number or decimal
+        if (!clickFunc) { //concatenates number in display if a function as not been chosen
             var temp = "" + value2 + btnValue;
             value2 = parseInt(temp);
-        } else if (selectedFunc) {
+        } else if (selectedFunc) { //once function is selected, it stores the number and prepares for the next number
             value1 = value2;
             value2 = btnValue;
             clickFunc = false;
         } else {
-            value2 = btnValue;
+            value2 = btnValue; 
             clickFunc = false;
         }
 
@@ -74,13 +74,13 @@ function handleFunc(btnValue) {
         case "-":
             selectedFunc = "-";
             break;
-        case "CE":
-            console.log('Cleared Entry!');
-            value2 = value1;
-            value1 = 0;
-            display.value = value1;
-            //clickFunc = true;
-            break;
+        // case "CE":
+        //     console.log('Cleared Entry!');
+        //     value2 = value1;
+        //     value1 = 0;
+        //     display.value = value1;
+        //     clickFunc = true;
+        //     break;
             // default: 
             // 	display.value = 0;
             // 	value1 = 0;
