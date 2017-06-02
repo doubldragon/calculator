@@ -11,7 +11,6 @@ document.onreadystatechange = function() {
         //initialize the application
         start();
         clearScreen();
-
     }
 };
 
@@ -80,7 +79,6 @@ function handleFunc(btnValue){
 			value1 = 0;
 			display.value = 0;
 			break;
-
 	};
 	checkState(btnValue);
 }
